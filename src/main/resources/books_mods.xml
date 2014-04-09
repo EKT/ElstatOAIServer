@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modsCollection xmlns:xlink="http://www.w3.org/1999/xlink"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xmlns="http://www.loc.gov/mods/v3"
+                xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-4.xsd">
+  <mods version="3.4">
+    <titleInfo>
+      <title>Statistical Yearbook of Greece 1930</title>
+    </titleInfo>
+    <name type="corporate">
+      <namePart>General Statistical Service of Greece</namePart>
+      <role><roleTerm type="text">creator</roleTerm><roleTerm type="code">cre</roleTerm></role>
+    </name>
+    <typeOfResource>text</typeOfResource>
+    <genre>statistics</genre>
+    <originInfo>
+      <place>
+        <placeTerm>Athens</placeTerm>
+      </place>
+      <publisher>General Statistical Service of Greece</publisher>
+      <dateCreated encoding="iso8601">20090615</dateCreated>
+      <dateIssued encoding="iso8601">1930</dateIssued>
+      <issuance>continuing</issuance>
+      <frequency authority=" marcfrequency">Annual</frequency>
+    </originInfo>
+    <language>
+      <languageTerm authority="iso639-2b">gre</languageTerm>
+      <languageTerm authority="iso639-2b">fre</languageTerm>
+    </language>
+    <physicalDescription>
+      <form authority="marcform">electronic</form>
+      <internetMediaType>PDF</internetMediaType>
+      <extent>60.46 MB</extent>
+    </physicalDescription>
+    <note>Contains list with the Principal Publications of the General Statistical Service of Greece</note>
+    <subject>
+      <temporal encoding="iso8601">1930</temporal>
+      <topic>Greece - Statistics</topic>
+    </subject>
+    <classification authority ="oecd">428/007</classification>
+    <identifier>GRESYE_01_0002_00001</identifier>
+    <location>
+      <url>http://dlib.statistics.gr/portal/page/portal/ESYE/showdetails?p_id=10095331&amp;p_derive=book</url>
+    </location>
+    <recordInfo>
+      <recordIdentifier>10095331</recordIdentifier>
+      <recordOrigin>human prepared</recordOrigin>
+    </recordInfo>
+  </mods>
+
+  <mods version="3.4">
+    <titleInfo>
+      <title>Statistical Yearbook of Greece 1934</title>
+    </titleInfo>
+    <name type="corporate">
+      <namePart>General Statistical Service of Greece</namePart>
+    <role><roleTerm type="text">creator</roleTerm><roleTerm type="code">cre</roleTerm></role></name>
+    <typeOfResource>text</typeOfResource>
+    <genre>statistics</genre>
+    <originInfo>
+      <place>
+        <placeTerm>Athens</placeTerm>
+      </place>
+      <publisher>General Statistical Service of Greece</publisher>
+      <dateCreated encoding="iso8601">20090615</dateCreated>
+      <dateIssued encoding="iso8601">1935</dateIssued>
+      <issuance>continuing</issuance>
+      <frequency authority=" marcfrequency">Annual</frequency>
+    </originInfo>
+    <language>
+      <languageTerm authority="iso639-2b">gre</languageTerm>
+      <languageTerm authority="iso639-2b">fre</languageTerm>
+    </language>
+    <physicalDescription>
+      <form authority="marcform">electronic</form>
+      <internetMediaType>PDF</internetMediaType>
+      <extent>60.46 MB</extent>
+    </physicalDescription>
+    <note>Contains list with the Principal Publications of the General Statistical Service of Greece</note>
+    <subject>
+      <temporal encoding="iso8601">1934</temporal>
+      <topic>Greece - Statistics</topic>
+    </subject>
+    <classification authority ="oecd">428/007</classification>
+    <identifier>GRESYE_01_0002_00004</identifier>
+    <location>
+      <url>http://dlib.statistics.gr/portal/page/portal/ESYE/showdetails?p_id=10095334&amp;p_derive=book</url>
+    </location>
+    <recordInfo>
+      <recordIdentifier>10095334</recordIdentifier>
+      <recordOrigin>human prepared</recordOrigin>
+    </recordInfo>
+  </mods>
+
+</modsCollection>

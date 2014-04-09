@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+  <context:annotation-config />
+
+  <context:component-scan base-package="gr.ekt.oaicatbte" />
+
+
+  <!-- ____________________________ BIBLIO TRANSFORMATION ENGINE ______________________________ -->
+
+  <bean id="dataloader" class="gr.ekt.enhancedoaiserver.bte.ElstatXMLDataLoader" scope="prototype">
+    <constructor-arg value="books_mods.xml"></constructor-arg>
+  </bean>
+
+  <bean id="defaultTransformationWorkflow"
+        class="gr.ekt.bte.core.LinearWorkflow" scope="prototype">
+    <property name="process">
+      <list>
+        <ref bean="datestamp-modifier"/>
+      </list>
+    </property>
+  </bean>
+
+  <bean id="workflows-map" class="java.util.HashMap" scope="prototype">
+    <constructor-arg>
+      <map>
+        <entry key="default" value-ref="defaultTransformationWorkflow"/>
+      </map>
+    </constructor-arg>
+  </bean>
+
+  <bean id="datestamp-modifier" class="gr.ekt.enhancedoaiserver.bte.ElstatDatestampModifier">
+    <property name="datestamp" value="2014-01-31T09:56:58Z"></property>
+  </bean>
+
+  <!-- ____________________________ CROSSWALKS ______________________________ -->
+
+  <bean id="crosswalks" class="java.util.HashMap">
+    <constructor-arg>
+      <map>
+        <!-- <entry key="oai_dc" value-ref="oaidc-crosswalk"/> -->
+        <entry key="raw" value-ref="raw-crosswalk"/>
+        <entry key="mods" value-ref="raw-crosswalk"/>
+      </map>
+    </constructor-arg>
+  </bean>
+
+  <!-- <bean id="oaidc-crosswalk" class="gr.ekt.enhancedoaiserver.bte.ElstatOAIDCCrosswalk"> -->
+  <!--   <constructor-arg> -->
+  <!--     <value>http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd</value> -->
+  <!--   </constructor-arg> -->
+  <!-- </bean> -->
+
+  <bean id="raw-crosswalk" class="gr.ekt.enhancedoaiserver.bte.ElstatRawCrosswalk">
+    <constructor-arg>
+      <value>http://www.loc.gov/standards/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-4.xsd</value>
+    </constructor-arg>
+  </bean>
+
+  <!-- ____________________________ VIRTUAL SETS ______________________________ -->
+
+  <bean id="virtual-sets" class="java.util.ArrayList">
+    <constructor-arg>
+      <list>
+        <map>
+          <entry key="name" value="Book" />
+          <entry key="setSpec" value="Book" />
+          <entry key="filters" value-ref="book-set-filters"/>
+        </map>
+      </list>
+    </constructor-arg>
+  </bean>
+
+  <bean id="book-set-filters" class="java.util.ArrayList">
+    <constructor-arg>
+      <list>
+      </list>
+    </constructor-arg>
+  </bean>
+
+  <!-- ____________________________ METADATA MAPPINGS ______________________________ -->
+
+  <bean id="metadata-maps" class="java.util.HashMap">
+    <constructor-arg>
+      <map>
+        <entry key="creator" value-ref="creator-map"/>
+        <entry key="mappings" value-ref="metadata-mappings"/>
+      </map>
+    </constructor-arg>
+  </bean>
+
+  <bean id="creator-map" class="java.util.HashMap">
+    <constructor-arg>
+      <map>
+        <entry key="name" value="Panagiotis Koutsourakis"/>
+        <entry key="email" value="kutsurak@ekt.gr"/>
+        <entry key="url" value="http://www.ekt.gr"/>
+      </map>
+    </constructor-arg>
+  </bean>
+
+  <bean id="metadata-mappings" class="java.util.ArrayList">
+    <constructor-arg>
+      <list>
+        <ref bean="mods2dc-mapping"/>
+      </list>
+    </constructor-arg>
+  </bean>
+
+  <!--mods 2 dc-->
+  <bean id="mods2dc-mapping" class="java.util.HashMap">
+    <constructor-arg>
+      <map>
+        <entry key="lastModified" value="2014-03-20T18:00:00"/>
+        <entry key="xslt-url" value="http://www.ekt.gr/OAI/metadata/mapping/mods2dc.xsl"/>
+        <entry key="source" value-ref="mods2dc-mapping-source"/>
+        <entry key="target" value-ref="mods2dc-mapping-target"/>
+        <entry key="additional-info" value-ref="mods2dc-additional-info"/>
+      </map>
+    </constructor-arg>
+  </bean>
+
+  <bean id="mods2dc-mapping-source" class="java.util.HashMap">
+    <constructor-arg>
+      <map>
+        <entry key="metadataPrefix" value="mods"/>
+        <entry key="namespace" value="http://www.loc.gov/mods/v3"/>
+        <entry key="schema" value="http://www.loc.gov/standards/mods/v3/mods-3-4.xsd"/>
+      </map>
+    </constructor-arg>
+  </bean>
+
+  <bean id="mods2dc-mapping-target" class="java.util.HashMap">
+    <constructor-arg>
+      <map>
+        <entry key="metadataPrefix" value="oai_dc"/>
+        <entry key="namespace" value="http://www.openarchives.org/OAI/2.0/oai_dc/"/>
+        <entry key="schema" value="http://www.openarchives.org/OAI/2.0/oai_dc.xsd"/>
+      </map>
+    </constructor-arg>
+  </bean>
+
+  <bean id="mods2dc-additional-info" class="java.util.HashMap">
+    <constructor-arg>
+      <map>
+        <entry key="description" value="This is a raw to oai_dc mapping for use in the aggregator http://openarchives.gr"/>
+      </map>
+    </constructor-arg>
+  </bean>
+</beans>
